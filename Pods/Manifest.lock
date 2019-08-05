@@ -1,0 +1,20 @@
+PODS:
+  - UMengUShare/Core (6.4.8.2):
+    - UMengUShare/Network
+  - UMengUShare/Network (6.4.8.2)
+  - UMengUShare/UI (6.4.8.2):
+    - UMengUShare/Core
+
+DEPENDENCIES:
+  - UMengUShare/UI
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - UMengUShare
+
+SPEC CHECKSUMS:
+  UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
+
+PODFILE CHECKSUM: d32d3a103946e98633e1b28d156e01354270fc9b
+
+COCOAPODS: 1.7.0
