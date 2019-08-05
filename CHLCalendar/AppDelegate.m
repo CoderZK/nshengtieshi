@@ -12,9 +12,13 @@
 #import "ViewController.h"
 #import "UMessage.h"
 
-#define UMKey @"58aa632a6e27a465080006cf"
+#define UMKey @"5d47e5664ca357105a0001a3"
+#import "RSA.h"
+//#define PublicKey @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDU6RGMfu/p+0s5lwWCH9D5KvTML30DxlwO7BoiH5vR/x4KR4D2i38/v0gW+vQRL1hETRrFc9ad7mLMpJ/lHwXM8VKPCWemoG9Stc5ptMzGjiK0r4YBe6AcmtJ1dve1N94bli3oRrT/vqI7fTx4cSO9uA4wo3UTLKThGBgSuicR1wIDAQAB"
+#define PrivateKey @"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBANTpEYx+7+n7SzmXBYIf0Pkq9MwvfQPGXA7sGiIfm9H/HgpHgPaLfz+/SBb69BEvWERNGsVz1p3uYsykn+UfBczxUo8JZ6agb1K1zmm0zMaOIrSvhgF7oBya0nV297U33huWLehGtP++ojt9PHhxI724DjCjdRMspOEYGBK6JxHXAgMBAAECgYEAw6c+oi6QSCPOuCiJPlAAmMkZ1n2ZU5u4Q1pClbMYXT0lHOsinu4ITMt58uxA1337jiCRBnxx8AX+MvLhoQsGJubjRY1aucOctnp+8js0QnbORmg7L+qWlnUubj+Ur8BZ/L9T96WzugExJdHNhcx8jcNS0jIvNMfJcfkN6+l1uIECQQD0OmEkE0LR73RV45IeMcfh20virOLb0ydT6GcLgLD5A/7wX7m0DB7Z5HtM4dtoB/VIQGpzdqBRGWNYJzTDd/yXAkEA3yw/1MsLTQMHV6Bq1krAQl+KM0M5wwY06mXPZgHbTWdBwVNohkI7sqiT7AoBHELD6zIWz5x7eU4uBEsDKPv8wQJAPgsqrGh8PCrxyfQDJcqNtdHpKE+1XhT5U7ahnul1i/044cXfvl6p477ImBJ0k6wZ4t4CbQzA03l4pGdpXxL3RwJBAKgHCdwuL8kA8cNA7Y+AYnbWthfYkqHKh4a/tsKHvVTu3GwxX25OaeIe2JiMA8ACaL4pTVFs8O4pNa5Xx/5Qk0ECQDnHmjWlvMEQT56R9MC/bB4a6x3efdIjrkHFDb99pkEuP68t6XXkcauFfAQsPOv8jWT0v6DhgoJEVc9+lxTq+sw="
 
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
+@property(nonatomic,assign)BOOL circulation;
 
 @end
 
@@ -26,21 +30,42 @@
     self.window =[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
+    self.circulation = YES;
     RootViewController *root = [[RootViewController alloc]init];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:root];
     self.window.rootViewController = nav;
     
      [self initUment:launchOptions];
    
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(queue, ^{
-        [weakSelf getMssage];
-    });
-    [NSThread sleepForTimeInterval:5];
-    return YES;
+    
+    if ([self todayIsBeforDateStr:@"2019-08-08"]){
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(queue, ^{
+            [weakSelf getMssage];
+        });
+        [NSThread sleepForTimeInterval:5];
+       
+    }
+     return YES;
 }
+
+
+- (BOOL)todayIsBeforDateStr:(NSString *)dataStr {
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate * nowDate = [NSDate date];
+    NSDate * dateNow = [formatter dateFromString:[formatter stringFromDate:nowDate]];
+    NSDate * dateOther = [formatter dateFromString:dataStr];
+    NSComparisonResult result = [dateNow compare:dateOther];
+    if (result == NSOrderedDescending) {
+        return YES;
+    }else {
+        return NO;
+    }
+}
+
+
 
 //在用户接受推送通知后系统会调用
 -(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
@@ -153,13 +178,22 @@
 }
 
 - (void)getMssage {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://ios.superadmin.club/?wt=1475193984"]];
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
+    NSString * str = [RSA decryptString:@"bmLiF57I74KSc2k2l3pUFJhI2AZgHVh9Py06SJlM/K/qllGlAKmsfNH4V14Qa9Tce/yAXz0aUMXojukDFRlfOmofimtaTSYrPVILsobw6x7HoEwyuWz0anMyN7W76JZRpUFgIbgXzO2lOi/QLdQeL+HL3EsRKO2RFurNGhPrreQ=" privateKey:PrivateKey];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:str]];
     [request setHTTPMethod:@"GET"];
     
     [[[NSURLSession sharedSession] dataTaskWithRequest:request
                                      completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                                         
+                                         if (error) {
+                                             self.circulation = YES;
+                                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                                 [self getMssage];
+                                             });
+                                         }else {
+                                             self.circulation = NO;
+                                         }
                                          if (data) {
                                              NSString *dataStr = [[ NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                                              NSLog(@"%@",dataStr);
@@ -193,19 +227,9 @@
     
 }
 
-- (BOOL)todayIsBeforDateStr:(NSString *)dataStr {
-    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate * nowDate = [NSDate date];
-    NSDate * dateNow = [formatter dateFromString:[formatter stringFromDate:nowDate]];
-    NSDate * dateOther = [formatter dateFromString:dataStr];
-    NSComparisonResult result = [dateNow compare:dateOther];
-    if (result == NSOrderedDescending) {
-        return YES;
-    }else {
-        return NO;
-    }
-}
+
+
+
 
 
 

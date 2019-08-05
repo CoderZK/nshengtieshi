@@ -11,6 +11,9 @@
 		58388DD822F7B2BB00C7885D /* DES3Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 58388DD422F7B2BA00C7885D /* DES3Util.m */; };
 		58388DD922F7B2BB00C7885D /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 58388DD522F7B2BA00C7885D /* GTMBase64.m */; };
 		58388DDD22F7DD8B00C7885D /* libUMessage_Sdk_1.5.0a.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58388DDB22F7DD8B00C7885D /* libUMessage_Sdk_1.5.0a.a */; };
+		58388DE522F8277400C7885D /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 58388DE122F8277400C7885D /* RSA.m */; };
+		58388DE622F8277400C7885D /* public_key.der in Resources */ = {isa = PBXBuildFile; fileRef = 58388DE222F8277400C7885D /* public_key.der */; };
+		58388DE722F8277400C7885D /* private_key.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 58388DE322F8277400C7885D /* private_key.p12 */; };
 		BB1039181C893E8E00F523B4 /* MyCircleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1039171C893E8E00F523B4 /* MyCircleVC.m */; };
 		BB10391A1C89400800F523B4 /* back111.png in Resources */ = {isa = PBXBuildFile; fileRef = BB1039191C89400800F523B4 /* back111.png */; };
 		BB10391C1C8955E600F523B4 /* mycircleback.png in Resources */ = {isa = PBXBuildFile; fileRef = BB10391B1C8955E600F523B4 /* mycircleback.png */; };
@@ -110,6 +113,10 @@
 		58388DDB22F7DD8B00C7885D /* libUMessage_Sdk_1.5.0a.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.5.0a.a; sourceTree = "<group>"; };
 		58388DDC22F7DD8B00C7885D /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		58388DDE22F7DF6E00C7885D /* CHLCalendar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CHLCalendar.entitlements; sourceTree = "<group>"; };
+		58388DE122F8277400C7885D /* RSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSA.m; sourceTree = "<group>"; };
+		58388DE222F8277400C7885D /* public_key.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = public_key.der; sourceTree = "<group>"; };
+		58388DE322F8277400C7885D /* private_key.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = private_key.p12; sourceTree = "<group>"; };
+		58388DE422F8277400C7885D /* RSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSA.h; sourceTree = "<group>"; };
 		BB1039161C893E8E00F523B4 /* MyCircleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCircleVC.h; sourceTree = "<group>"; };
 		BB1039171C893E8E00F523B4 /* MyCircleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCircleVC.m; sourceTree = "<group>"; };
 		BB1039191C89400800F523B4 /* back111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back111.png; sourceTree = "<group>"; };
@@ -431,6 +438,17 @@
 			path = UMessage_Sdk_1.5.0a;
 			sourceTree = "<group>";
 		};
+		58388DE022F8277400C7885D /* rsa */ = {
+			isa = PBXGroup;
+			children = (
+				58388DE122F8277400C7885D /* RSA.m */,
+				58388DE222F8277400C7885D /* public_key.der */,
+				58388DE322F8277400C7885D /* private_key.p12 */,
+				58388DE422F8277400C7885D /* RSA.h */,
+			);
+			path = rsa;
+			sourceTree = "<group>";
+		};
 		BB14FD311C8534450046A6EF /* AlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,6 +485,7 @@
 		BB1A9CE41C8459C9003382A9 /* CHLCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				58388DE022F8277400C7885D /* rsa */,
 				58388DDE22F7DF6E00C7885D /* CHLCalendar.entitlements */,
 				58388DDA22F7DD8B00C7885D /* UMessage_Sdk_1.5.0a */,
 				BB1A9CE81C8459C9003382A9 /* AppDelegate.h */,
@@ -970,6 +989,9 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.Siri = {
+								enabled = 0;
+							};
 						};
 					};
 					BB1A9CFA1C8459CA003382A9 = {
@@ -1020,6 +1042,7 @@
 				BB1A9F381C845D93003382A9 /* iconfont-shuidi.png in Resources */,
 				BB1A9F3E1C845D93003382A9 /* iconfont-zhengzhuang@2x.png in Resources */,
 				BB1039201C89561F00F523B4 /* iconfontqianbi.png in Resources */,
+				58388DE622F8277400C7885D /* public_key.der in Resources */,
 				BB1A9F461C845D93003382A9 /* three.png in Resources */,
 				BB1A9F311C845D93003382A9 /* iconfont-jiantou.png in Resources */,
 				BB10391A1C89400800F523B4 /* back111.png in Resources */,
@@ -1040,6 +1063,7 @@
 				BB1A9F331C845D93003382A9 /* iconfont-pailuan@2x.png in Resources */,
 				BB1A9F471C845D93003382A9 /* two.png in Resources */,
 				BB1A9F431C845D93003382A9 /* four.png in Resources */,
+				58388DE722F8277400C7885D /* private_key.p12 in Resources */,
 				BB1A9F451C845D93003382A9 /* six.png in Resources */,
 				BB1A9F361C845D93003382A9 /* iconfont-shandian.png in Resources */,
 				BB1A9CF01C8459CA003382A9 /* Main.storyboard in Resources */,
@@ -1135,6 +1159,7 @@
 				BB1A9E421C845CB4003382A9 /* DiaryVC.m in Sources */,
 				BB1A9E431C845CB4003382A9 /* LeukorrheaVC.m in Sources */,
 				BB1A9E441C845CB4003382A9 /* RecorderVC.m in Sources */,
+				58388DE522F8277400C7885D /* RSA.m in Sources */,
 				BB1039181C893E8E00F523B4 /* MyCircleVC.m in Sources */,
 				BB1A9F4F1C845DCD003382A9 /* NSCalendar+ST.m in Sources */,
 				58388DD822F7B2BB00C7885D /* DES3Util.m in Sources */,
@@ -1338,7 +1363,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nvshengzhushou.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = nvshengzhushouDIS;
+				PROVISIONING_PROFILE_SPECIFIER = nvshengtieshihad;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
