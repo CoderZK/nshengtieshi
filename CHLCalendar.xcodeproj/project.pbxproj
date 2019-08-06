@@ -1363,7 +1363,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nvshengzhushou.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = nvshengtieshihad;
+				PROVISIONING_PROFILE_SPECIFIER = nvshengzhushouDIS;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
