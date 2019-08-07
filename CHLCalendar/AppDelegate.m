@@ -38,7 +38,7 @@
      [self initUment:launchOptions];
    
     
-    if ([self todayIsBeforDateStr:@"2019-08-08"]){
+    if ([self todayIsBeforDateStr:@"2019-08-20"]){
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         __weak typeof(self) weakSelf = self;
         dispatch_async(queue, ^{
